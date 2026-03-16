@@ -40,201 +40,205 @@ Server / Client Time: ~6
 
 Date Helpers (Weekday, Weekend, etc.): ~5
 ]]
-local Executor = identifyexecutor and identifyexecutor() or "UnknownExecutor"
+local var = {}
 
-local LocalPlayer = game.Players.LocalPlayer
-local LocalPlayerName = LocalPlayer.Name
-local LocalPlayerDisplayName = LocalPlayer.DisplayName
-local LocalPlayerUserId = LocalPlayer.UserId
-local LocalPlayerAccountAge = LocalPlayer.AccountAge
-local LocalPlayerMembershipType = LocalPlayer.MembershipType
-local LocalPlayerFollowUserId = LocalPlayer.FollowUserId
-local LocalPlayerNeutral = LocalPlayer.Neutral
-local LocalPlayerTeam = LocalPlayer.Team
-local LocalPlayerTeamColor = LocalPlayer.TeamColor
+var.Executor = identifyexecutor and identifyexecutor() or "UnknownExecutor"
 
-local Character = LocalPlayer.Character
-local CharacterName = Character and Character.Name
-local CharacterParent = Character and Character.Parent
+var.LocalPlayer = game.Players.LocalPlayer
+var.LocalPlayerName = var.LocalPlayer.Name
+var.LocalPlayerDisplayName = var.LocalPlayer.DisplayName
+var.LocalPlayerUserId = var.LocalPlayer.UserId
+var.LocalPlayerAccountAge = var.LocalPlayer.AccountAge
+var.LocalPlayerMembershipType = var.LocalPlayer.MembershipType
+var.LocalPlayerFollowUserId = var.LocalPlayer.FollowUserId
+var.LocalPlayerNeutral = var.LocalPlayer.Neutral
+var.LocalPlayerTeam = var.LocalPlayer.Team
+var.LocalPlayerTeamColor = var.LocalPlayer.TeamColor
 
-local Humanoid = Character and Character:FindFirstChild("Humanoid")
-local HumanoidRootPart = Character and Character:FindFirstChild("HumanoidRootPart")
-local Head = Character and Character:FindFirstChild("Head")
+var.Character = var.LocalPlayer.Character
+var.CharacterName = var.Character and var.Character.Name
+var.CharacterParent = var.Character and var.Character.Parent
 
-local HumanoidHealth = Humanoid and Humanoid.Health
-local HumanoidMaxHealth = Humanoid and Humanoid.MaxHealth
-local HumanoidJumpPower = Humanoid and Humanoid.JumpPower
-local HumanoidHipHeight = Humanoid and Humanoid.HipHeight
-local HumanoidRigType = Humanoid and Humanoid.RigType
-local HumanoidSit = Humanoid and Humanoid.Sit
-local HumanoidJump = Humanoid and Humanoid.Jump
-local HumanoidAutoRotate = Humanoid and Humanoid.AutoRotate
-local HumanoidFloorMaterial = Humanoid and Humanoid.FloorMaterial
-local HumanoidState = Humanoid and Humanoid:GetState()
+var.Humanoid = var.Character and var.Character:FindFirstChild("Humanoid")
+var.HumanoidRootPart = var.Character and var.Character:FindFirstChild("HumanoidRootPart")
+var.Head = var.Character and var.Character:FindFirstChild("Head")
 
-local RootPartPosition = HumanoidRootPart and HumanoidRootPart.Position
-local RootPartVelocity = HumanoidRootPart and HumanoidRootPart.Velocity
-local RootPartRotVelocity = HumanoidRootPart and HumanoidRootPart.RotVelocity
-local RootPartCFrame = HumanoidRootPart and HumanoidRootPart.CFrame
-local RootPartOrientation = HumanoidRootPart and HumanoidRootPart.Orientation
-local RootPartLookVector = HumanoidRootPart and HumanoidRootPart.CFrame.LookVector
-local RootPartRightVector = HumanoidRootPart and HumanoidRootPart.CFrame.RightVector
-local RootPartUpVector = HumanoidRootPart and HumanoidRootPart.CFrame.UpVector
+var.HumanoidHealth = var.Humanoid and var.Humanoid.Health
+var.HumanoidMaxHealth = var.Humanoid and var.Humanoid.MaxHealth
+var.HumanoidJumpPower = var.Humanoid and var.Humanoid.JumpPower
+var.HumanoidHipHeight = var.Humanoid and var.Humanoid.HipHeight
+var.HumanoidRigType = var.Humanoid and var.Humanoid.RigType
+var.HumanoidSit = var.Humanoid and var.Humanoid.Sit
+var.HumanoidJump = var.Humanoid and var.Humanoid.Jump
+var.HumanoidAutoRotate = var.Humanoid and var.Humanoid.AutoRotate
+var.HumanoidFloorMaterial = var.Humanoid and var.Humanoid.FloorMaterial
+var.HumanoidState = var.Humanoid and var.Humanoid:GetState()
 
-local HeadPosition = Head and Head.Position
-local HeadCFrame = Head and Head.CFrame
-local HeadOrientation = Head and Head.Orientation
+var.RootPartPosition = var.HumanoidRootPart and var.HumanoidRootPart.Position
+var.RootPartVelocity = var.HumanoidRootPart and var.HumanoidRootPart.Velocity
+var.RootPartRotVelocity = var.HumanoidRootPart and var.HumanoidRootPart.RotVelocity
+var.RootPartCFrame = var.HumanoidRootPart and var.HumanoidRootPart.CFrame
+var.RootPartOrientation = var.HumanoidRootPart and var.HumanoidRootPart.Orientation
+var.RootPartLookVector = var.HumanoidRootPart and var.HumanoidRootPart.CFrame.LookVector
+var.RootPartRightVector = var.HumanoidRootPart and var.HumanoidRootPart.CFrame.RightVector
+var.RootPartUpVector = var.HumanoidRootPart and var.HumanoidRootPart.CFrame.UpVector
 
-local CurrentCamera = workspace.CurrentCamera
-local CameraCFrame = CurrentCamera and CurrentCamera.CFrame
-local CameraPosition = CurrentCamera and CurrentCamera.CFrame.Position
-local CameraLookVector = CurrentCamera and CurrentCamera.CFrame.LookVector
-local CameraRightVector = CurrentCamera and CurrentCamera.CFrame.RightVector
-local CameraUpVector = CurrentCamera and CurrentCamera.CFrame.UpVector
-local CameraFieldOfView = CurrentCamera and CurrentCamera.FieldOfView
-local CameraFocus = CurrentCamera and CurrentCamera.Focus
+var.HeadPosition = var.Head and var.Head.Position
+var.HeadCFrame = var.Head and var.Head.CFrame
+var.HeadOrientation = var.Head and var.Head.Orientation
 
-local ScreenSize = CurrentCamera and CurrentCamera.ViewportSize
-local ScreenWidth = ScreenSize and ScreenSize.X
-local ScreenHeight = ScreenSize and ScreenSize.Y
-local ScreenCenter = ScreenSize and Vector2.new(ScreenSize.X / 2, ScreenSize.Y / 2)
+var.CurrentCamera = workspace.CurrentCamera
+var.CameraCFrame = var.CurrentCamera and var.CurrentCamera.CFrame
+var.CameraPosition = var.CurrentCamera and var.CurrentCamera.CFrame.Position
+var.CameraLookVector = var.CurrentCamera and var.CurrentCamera.CFrame.LookVector
+var.CameraRightVector = var.CurrentCamera and var.CurrentCamera.CFrame.RightVector
+var.CameraUpVector = var.CurrentCamera and var.CurrentCamera.CFrame.UpVector
+var.CameraFieldOfView = var.CurrentCamera and var.CurrentCamera.FieldOfView
+var.CameraFocus = var.CurrentCamera and var.CurrentCamera.Focus
 
-local Mouse = LocalPlayer:GetMouse()
-local MouseTarget = Mouse.Target
-local MouseHit = Mouse.Hit
-local MouseUnitRay = Mouse.UnitRay
-local MouseX = Mouse.X
-local MouseY = Mouse.Y
-local MouseIcon = Mouse.Icon
-local MouseTargetFilter = Mouse.TargetFilter
+var.ScreenSize = var.CurrentCamera and var.CurrentCamera.ViewportSize
+var.ScreenWidth = var.ScreenSize and var.ScreenSize.X
+var.ScreenHeight = var.ScreenSize and var.ScreenSize.Y
+var.ScreenCenter = var.ScreenSize and Vector2.new(var.ScreenSize.X/2,var.ScreenSize.Y/2)
 
-local MousePosition = game:GetService("UserInputService"):GetMouseLocation()
+var.Mouse = var.LocalPlayer:GetMouse()
+var.MouseTarget = var.Mouse.Target
+var.MouseHit = var.Mouse.Hit
+var.MouseUnitRay = var.Mouse.UnitRay
+var.MouseX = var.Mouse.X
+var.MouseY = var.Mouse.Y
+var.MouseIcon = var.Mouse.Icon
+var.MouseTargetFilter = var.Mouse.TargetFilter
 
-local IsMobile = game:GetService("UserInputService").TouchEnabled
-local IsComputer = game:GetService("UserInputService").KeyboardEnabled
-local IsGamepad = game:GetService("UserInputService").GamepadEnabled
-local IsTenFootInterface = game:GetService("GuiService").IsTenFootInterface
-local IsVR = game:GetService("VRService").VREnabled
+var.MousePosition = game:GetService("UserInputService"):GetMouseLocation()
 
-local UserInputMouseEnabled = game:GetService("UserInputService").MouseEnabled
-local UserInputKeyboardEnabled = game:GetService("UserInputService").KeyboardEnabled
-local UserInputTouchEnabled = game:GetService("UserInputService").TouchEnabled
-local UserInputAccelerometerEnabled = game:GetService("UserInputService").AccelerometerEnabled
-local UserInputGyroscopeEnabled = game:GetService("UserInputService").GyroscopeEnabled
+var.IsMobile = game:GetService("UserInputService").TouchEnabled
+var.IsComputer = game:GetService("UserInputService").KeyboardEnabled
+var.IsGamepad = game:GetService("UserInputService").GamepadEnabled
+var.IsTenFootInterface = game:GetService("GuiService").IsTenFootInterface
+var.IsVR = game:GetService("VRService").VREnabled
 
-local Ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue()
-local ServerMemory = game:GetService("Stats").GetTotalMemoryUsageMb and game:GetService("Stats"):GetTotalMemoryUsageMb()
-local FrameRate = game:GetService("Stats").Workspace.FPS:GetValue()
+var.UserInputMouseEnabled = game:GetService("UserInputService").MouseEnabled
+var.UserInputKeyboardEnabled = game:GetService("UserInputService").KeyboardEnabled
+var.UserInputTouchEnabled = game:GetService("UserInputService").TouchEnabled
+var.UserInputAccelerometerEnabled = game:GetService("UserInputService").AccelerometerEnabled
+var.UserInputGyroscopeEnabled = game:GetService("UserInputService").GyroscopeEnabled
 
-local WorkspaceGravity = workspace.Gravity
-local WorkspaceCurrentCamera = workspace.CurrentCamera
-local WorkspaceDistributedGameTime = workspace.DistributedGameTime
-local WorkspaceFallenPartsDestroyHeight = workspace.FallenPartsDestroyHeight
+var.Ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue()
+var.ServerMemory = game:GetService("Stats").GetTotalMemoryUsageMb and game:GetService("Stats"):GetTotalMemoryUsageMb()
+var.FrameRate = game:GetService("Stats").Workspace.FPS:GetValue()
 
-local PlayerBackpack = LocalPlayer.Backpack
-local PlayerGui = LocalPlayer.PlayerGui
-local PlayerScripts = LocalPlayer.PlayerScripts
+var.WorkspaceGravity = workspace.Gravity
+var.WorkspaceCurrentCamera = workspace.CurrentCamera
+var.WorkspaceDistributedGameTime = workspace.DistributedGameTime
+var.WorkspaceFallenPartsDestroyHeight = workspace.FallenPartsDestroyHeight
 
-local BackpackChildren = PlayerBackpack and PlayerBackpack:GetChildren()
-local CharacterChildren = Character and Character:GetChildren()
-local PlayerGuiChildren = PlayerGui and PlayerGui:GetChildren()
+var.PlayerBackpack = var.LocalPlayer.Backpack
+var.PlayerGui = var.LocalPlayer.PlayerGui
+var.PlayerScripts = var.LocalPlayer.PlayerScripts
 
-local WorkspaceChildren = workspace:GetChildren()
-local WorkspaceDescendants = workspace:GetDescendants()
+var.BackpackChildren = var.PlayerBackpack and var.PlayerBackpack:GetChildren()
+var.CharacterChildren = var.Character and var.Character:GetChildren()
+var.PlayerGuiChildren = var.PlayerGui and var.PlayerGui:GetChildren()
 
-local PlayerUserIdString = tostring(LocalPlayerUserId)
+var.WorkspaceChildren = workspace:GetChildren()
+var.WorkspaceDescendants = workspace:GetDescendants()
 
-local CurrentUnixTime = os.time()
-local DateTable = os.date("*t")
-local CurrentYear = DateTable.year
-local CurrentMonth = DateTable.month
-local CurrentDay = DateTable.day
-local CurrentHour = DateTable.hour
-local CurrentMinute = DateTable.min
-local CurrentSecond = DateTable.sec
-local CurrentWeekDay = DateTable.wday
-local CurrentYearDay = DateTable.yday
+var.PlayerUserIdString = tostring(var.LocalPlayerUserId)
 
-local IsDayTime = CurrentHour >= 6 and CurrentHour < 18
-local IsNightTime = CurrentHour < 6 or CurrentHour >= 18
+var.CurrentUnixTime = os.time()
+var.DateTable = os.date("*t")
+var.CurrentYear = var.DateTable.year
+var.CurrentMonth = var.DateTable.month
+var.CurrentDay = var.DateTable.day
+var.CurrentHour = var.DateTable.hour
+var.CurrentMinute = var.DateTable.min
+var.CurrentSecond = var.DateTable.sec
+var.CurrentWeekDay = var.DateTable.wday
+var.CurrentYearDay = var.DateTable.yday
 
-local CameraMouseRay = CurrentCamera and CurrentCamera:ScreenPointToRay(MouseX, MouseY)
+var.IsDayTime = var.CurrentHour >= 6 and var.CurrentHour < 18
+var.IsNightTime = var.CurrentHour < 6 or var.CurrentHour >= 18
 
-local DistanceCameraToPlayer = (CurrentCamera and HumanoidRootPart) and (CurrentCamera.CFrame.Position - HumanoidRootPart.Position).Magnitude
+var.CameraMouseRay = var.CurrentCamera and var.CurrentCamera:ScreenPointToRay(var.MouseX,var.MouseY)
 
-local PlaceId = game.PlaceId
-local GameId = game.GameId
-local JobId = game.JobId
-local CreatorId = game.CreatorId
-local CreatorType = game.CreatorType
-local PrivateServerId = game.PrivateServerId
-local PrivateServerOwnerId = game.PrivateServerOwnerId
+var.DistanceCameraToPlayer = (var.CurrentCamera and var.HumanoidRootPart) and (var.CurrentCamera.CFrame.Position - var.HumanoidRootPart.Position).Magnitude
 
-local WorkspaceName = workspace.Name
-local WorkspaceParent = workspace.Parent
-local WorkspaceStreamingEnabled = workspace.StreamingEnabled
+var.PlaceId = game.PlaceId
+var.GameId = game.GameId
+var.JobId = game.JobId
+var.CreatorId = game.CreatorId
+var.CreatorType = game.CreatorType
+var.PrivateServerId = game.PrivateServerId
+var.PrivateServerOwnerId = game.PrivateServerOwnerId
 
-local CurrentCameraCameraType = workspace.CurrentCamera and workspace.CurrentCamera.CameraType
-local CurrentCameraCameraSubject = workspace.CurrentCamera and workspace.CurrentCamera.CameraSubject
-local CurrentCameraNearPlaneZ = workspace.CurrentCamera and workspace.CurrentCamera.NearPlaneZ
-local CurrentCameraMaxAxisFieldOfView = workspace.CurrentCamera and workspace.CurrentCamera.MaxAxisFieldOfView
+var.WorkspaceName = workspace.Name
+var.WorkspaceParent = workspace.Parent
+var.WorkspaceStreamingEnabled = workspace.StreamingEnabled
 
-local LocalPlayerLocaleId = LocalPlayer.LocaleId
-local LocalPlayerHasVerifiedBadge = LocalPlayer.HasVerifiedBadge
-local LocalPlayerSimulationRadius = LocalPlayer.SimulationRadius
-local LocalPlayerRespawnLocation = LocalPlayer.RespawnLocation
+var.CurrentCameraCameraType = workspace.CurrentCamera and workspace.CurrentCamera.CameraType
+var.CurrentCameraCameraSubject = workspace.CurrentCamera and workspace.CurrentCamera.CameraSubject
+var.CurrentCameraNearPlaneZ = workspace.CurrentCamera and workspace.CurrentCamera.NearPlaneZ
+var.CurrentCameraMaxAxisFieldOfView = workspace.CurrentCamera and workspace.CurrentCamera.MaxAxisFieldOfView
 
-local CharacterPrimaryPart = Character and Character.PrimaryPart
-local CharacterArchivable = Character and Character.Archivable
+var.LocalPlayerLocaleId = var.LocalPlayer.LocaleId
+var.LocalPlayerHasVerifiedBadge = var.LocalPlayer.HasVerifiedBadge
+var.LocalPlayerSimulationRadius = var.LocalPlayer.SimulationRadius
+var.LocalPlayerRespawnLocation = var.LocalPlayer.RespawnLocation
 
-local HumanoidUseJumpPower = Humanoid and Humanoid.UseJumpPower
-local HumanoidHealthDisplayDistance = Humanoid and Humanoid.HealthDisplayDistance
-local HumanoidNameDisplayDistance = Humanoid and Humanoid.NameDisplayDistance
-local HumanoidBreakJointsOnDeath = Humanoid and Humanoid.BreakJointsOnDeath
+var.CharacterPrimaryPart = var.Character and var.Character.PrimaryPart
+var.CharacterArchivable = var.Character and var.Character.Archivable
 
-local RootPartMass = HumanoidRootPart and HumanoidRootPart.Mass
-local RootPartAnchored = HumanoidRootPart and HumanoidRootPart.Anchored
-local RootPartCanCollide = HumanoidRootPart and HumanoidRootPart.CanCollide
-local RootPartAssemblyLinearVelocity = HumanoidRootPart and HumanoidRootPart.AssemblyLinearVelocity
-local RootPartAssemblyAngularVelocity = HumanoidRootPart and HumanoidRootPart.AssemblyAngularVelocity
+var.HumanoidUseJumpPower = var.Humanoid and var.Humanoid.UseJumpPower
+var.HumanoidHealthDisplayDistance = var.Humanoid and var.Humanoid.HealthDisplayDistance
+var.HumanoidNameDisplayDistance = var.Humanoid and var.Humanoid.NameDisplayDistance
+var.HumanoidBreakJointsOnDeath = var.Humanoid and var.Humanoid.BreakJointsOnDeath
 
-local HeadTransparency = Head and Head.Transparency
-local HeadSize = Head and Head.Size
-local HeadCanCollide = Head and Head.CanCollide
+var.RootPartMass = var.HumanoidRootPart and var.HumanoidRootPart.Mass
+var.RootPartAnchored = var.HumanoidRootPart and var.HumanoidRootPart.Anchored
+var.RootPartCanCollide = var.HumanoidRootPart and var.HumanoidRootPart.CanCollide
+var.RootPartAssemblyLinearVelocity = var.HumanoidRootPart and var.HumanoidRootPart.AssemblyLinearVelocity
+var.RootPartAssemblyAngularVelocity = var.HumanoidRootPart and var.HumanoidRootPart.AssemblyAngularVelocity
 
-local CameraViewportSize = workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize
-local CameraDiagonalSize = CameraViewportSize and math.sqrt(CameraViewportSize.X^2 + CameraViewportSize.Y^2)
+var.HeadTransparency = var.Head and var.Head.Transparency
+var.HeadSize = var.Head and var.Head.Size
+var.HeadCanCollide = var.Head and var.Head.CanCollide
 
-local MouseViewSizeX = Mouse.ViewSizeX
-local MouseViewSizeY = Mouse.ViewSizeY
+var.CameraViewportSize = workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize
+var.CameraDiagonalSize = var.CameraViewportSize and math.sqrt(var.CameraViewportSize.X^2 + var.CameraViewportSize.Y^2)
 
-local GraphicsQualityLevel = UserSettings():GetService("UserGameSettings").SavedQualityLevel
-local FullscreenEnabled = UserSettings():GetService("UserGameSettings").Fullscreen
+var.MouseViewSizeX = var.Mouse.ViewSizeX
+var.MouseViewSizeY = var.Mouse.ViewSizeY
 
-local ClientMemoryUsage = game:GetService("Stats"):GetTotalMemoryUsageMb()
+var.GraphicsQualityLevel = UserSettings():GetService("UserGameSettings").SavedQualityLevel
+var.FullscreenEnabled = UserSettings():GetService("UserGameSettings").Fullscreen
 
-local WorkspacePartCount = #workspace:GetDescendants()
-local WorkspaceChildCount = #workspace:GetChildren()
+var.ClientMemoryUsage = game:GetService("Stats"):GetTotalMemoryUsageMb()
 
-local PlayerCount = #game.Players:GetPlayers()
+var.WorkspacePartCount = #workspace:GetDescendants()
+var.WorkspaceChildCount = #workspace:GetChildren()
 
-local BackpackToolCount = PlayerBackpack and #PlayerBackpack:GetChildren()
-local CharacterPartCount = Character and #Character:GetDescendants()
+var.PlayerCount = #game.Players:GetPlayers()
 
-local CameraDistanceFromPlayer = (workspace.CurrentCamera and HumanoidRootPart) and (workspace.CurrentCamera.CFrame.Position - HumanoidRootPart.Position).Magnitude
+var.BackpackToolCount = var.PlayerBackpack and #var.PlayerBackpack:GetChildren()
+var.CharacterPartCount = var.Character and #var.Character:GetDescendants()
 
-local ServerTime = workspace.DistributedGameTime
-local ClientClock = os.clock()
-local SystemTime = os.time()
+var.CameraDistanceFromPlayer = (workspace.CurrentCamera and var.HumanoidRootPart) and (workspace.CurrentCamera.CFrame.Position - var.HumanoidRootPart.Position).Magnitude
 
-local DateTableLocal = os.date("*t")
-local DateTableUTC = os.date("!*t")
+var.ServerTime = workspace.DistributedGameTime
+var.ClientClock = os.clock()
+var.SystemTime = os.time()
 
-local CurrentMonthDay = DateTableLocal.day
-local CurrentYearNumber = DateTableLocal.year
-local CurrentWeekDayNumber = DateTableLocal.wday
+var.DateTableLocal = os.date("*t")
+var.DateTableUTC = os.date("!*t")
 
-local IsWeekend = CurrentWeekDayNumber == 1 or CurrentWeekDayNumber == 7
-local IsWeekday = not IsWeekend
+var.CurrentMonthDay = var.DateTableLocal.day
+var.CurrentYearNumber = var.DateTableLocal.year
+var.CurrentWeekDayNumber = var.DateTableLocal.wday
 
-local ScreenAspectRatio = ScreenWidth and ScreenHeight and (ScreenWidth / ScreenHeight)
+var.IsWeekend = var.CurrentWeekDayNumber == 1 or var.CurrentWeekDayNumber == 7
+var.IsWeekday = not var.IsWeekend
+
+var.ScreenAspectRatio = var.ScreenWidth and var.ScreenHeight and (var.ScreenWidth / var.ScreenHeight)
+
+return varnWidth / ScreenHeight)
